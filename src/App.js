@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { RouterProvider } from "react-router-dom";
+import ThemeProvider from "./contexts/ThemeProvider";
+import router from "./routes/routes";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import AuthProvider from "./contexts/AuthProvider";
+
+const queryClient = new QueryClient()
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <div className="bg-[#F7F9FB] dark:bg-gray-900 font-maven">
+            <RouterProvider router={router} />
+          </div>
+        </QueryClientProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
