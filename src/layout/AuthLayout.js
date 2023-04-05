@@ -8,9 +8,9 @@ import { useTheme } from "../contexts/ThemeProvider";
 const AuthLayout = () => {
   const { theme } = useTheme();
   return (
-    <div className="min-h-screen md:flex justify-center">
+    <div className="container md:container-md mx-auto min-height md:flex justify-center">
       <div className="md:w-1/2 lg:w-1/3 py-14">
-        <img className="h-20 mx-auto mb-8" src={theme ? logo : logo1} alt="" />
+        <img className="h-20 mx-auto mb-8" src={!theme ? logo : logo1} alt="" />
         <div className="border border-slate-300 dark:border-slate-600 rounded-md">
           <AuthNavbar />
           <Outlet />

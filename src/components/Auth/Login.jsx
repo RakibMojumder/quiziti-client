@@ -5,9 +5,10 @@ import { loginSchema } from "../../YupSchema/YupSchema";
 import { motion } from "framer-motion";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
-import { FcGoogle } from "react-icons/fc";
 import { AUTH_CONTEXT } from "../../contexts/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import Spinner from "../Loaders/Spinner";
+import Cookies from "js-cookie";
 
 const initialValues = {
   email: "",
@@ -15,23 +16,40 @@ const initialValues = {
 };
 
 const Login = () => {
-  const { setUser } = useContext(AUTH_CONTEXT);
+  const { setUser, setToken } = useContext(AUTH_CONTEXT);
   const [showPass, setShowPass] = useState(false);
   const [loginError, setLoginError] = useState("");
-  const location = useLocation();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const from = location?.state?.from?.pathname || "/";
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const { values, errors, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values) => {
-      const res = await axios.post("http://localhost:5000/auth/login", values);
+      setLoading(true);
+      const res = await axios.post(
+        "https://quiziti.vercel.app/auth/login",
+        values,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+
       if (res.data.success) {
-        localStorage.setItem("quiziti-access-token", res.data.token);
+        Cookies.set("user", JSON.stringify(res.data.userInfo), {
+          expires: 2,
+        });
+
+        Cookies.set("token", res.data.token, { expires: 2 });
         setUser(res.data.userInfo);
-        localStorage.setItem("quiziti-user", JSON.stringify(res.data.userInfo));
+        setToken(res.data.token);
+        setLoading(false);
         navigate(from, { replace: true });
       } else {
+        setLoading(false);
         setLoginError(res.data.message);
       }
     },
@@ -44,21 +62,7 @@ const Login = () => {
       exit={{ opacity: 0, x: -100 }}
       className="dark:text-white p-4 md:p-8 md:pt-0"
     >
-      <motion.button
-        whileHover={{
-          boxShadow: "0px 0px 4px #45C6B1",
-          transitionDuration: "100ms",
-        }}
-        className="w-full border border-slate-300 dark:border-slate-600 dark:text-white text-sm py-2 mt-7 rounded-sm flex items-center justify-center uppercase"
-      >
-        <FcGoogle className="mr-4 text-xl" /> sign in with google
-      </motion.button>
-      <div className="flex items-center justify-between my-5">
-        <span className="w-[42%] h-[1px] bg-slate-400"></span>
-        <span>or</span>
-        <span className="w-[42%] h-[1px] bg-slate-400"></span>
-      </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mt-10">
         <div className="mb-5">
           <input
             className={`w-full pl-3 py-1.5 rounded-sm dark:bg-gray-800/80 border border-slate-200 dark:border-gray-700 focus:outline-none focus:border-[#45C6B1] dark:focus:border-[#45C6B1] ${
@@ -137,9 +141,12 @@ const Login = () => {
         </div>
         <button
           type="submit"
-          className="w-full py-1.5 bg-[#45C6B1] transition-all hover:bg-[#07b396] text-white rounded-sm font-semibold uppercase"
+          disabled={loading}
+          className={`w-full py-1.5 bg-[#45C6B1] transition-all hover:bg-[#07b396] text-white rounded-sm font-semibold uppercase ${
+            loading && "bg-transparent border border-slate-700"
+          }`}
         >
-          login
+          {loading ? <Spinner /> : <span>Login</span>}
         </button>
       </form>
     </motion.div>

@@ -1,15 +1,20 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
+import Cookies from 'js-cookie';
+
+
 export const AUTH_CONTEXT = createContext();
+
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem('quiziti-user')));
-        setLoading(false);
-    }, [])
+    const [user, setUser] = useState(
+        Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null
+    );
+    const [token, setToken] = useState(
+        Cookies.get("token") ? Cookies.get("token") : null
+    );
+
 
     return (
-        <AUTH_CONTEXT.Provider value={{ user, setUser, loading }}>
+        <AUTH_CONTEXT.Provider value={{ user, setUser, token, setToken }}>
             {children}
         </AUTH_CONTEXT.Provider>
     );

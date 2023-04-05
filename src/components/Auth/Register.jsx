@@ -30,7 +30,7 @@ const Register = () => {
       delete values.confirmPassword;
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/auth/register",
+        "https://quiziti.vercel.app/auth/register",
         values
       );
       if (res.data.success) {
@@ -50,7 +50,7 @@ const Register = () => {
       exit={{ opacity: 0, x: -100 }}
       className="dark:text-white p-4 md:p-8 md:pt-0"
     >
-      <motion.button
+      {/* <motion.button
         whileHover={{
           boxShadow: "0px 0px 4px #45C6B1",
           transitionDuration: "100ms",
@@ -63,8 +63,8 @@ const Register = () => {
         <span className="w-[42%] h-[1px] bg-slate-400"></span>
         <span>or</span>
         <span className="w-[42%] h-[1px] bg-slate-400"></span>
-      </div>
-      <form onSubmit={handleSubmit}>
+      </div> */}
+      <form onSubmit={handleSubmit} className="mt-10">
         <div className="mb-5">
           <input
             className={`w-full pl-3 py-1.5 rounded-sm dark:bg-gray-800/80 border border-slate-200 dark:border-gray-700 focus:outline-none focus:border-[#45C6B1] dark:focus:border-[#45C6B1] ${
@@ -148,7 +148,7 @@ const Register = () => {
               }`}
               type={showConfirmPass ? "text" : "password"}
               name="confirmPassword"
-              placeholder="Password"
+              placeholder="Confirm Password"
               autoComplete="off"
               value={values.confirmPassword}
               onChange={handleChange}

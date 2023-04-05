@@ -5,9 +5,9 @@ const QuizTimeLine = () => {
     <div className="mt-8">
       <ul>
         <li className="">
-          <div className="flex items-baseline gap-6 pb-6 relative before:absolute before:h-full before:w-[1px] before:left-[11px] before:top-0 before:bg-[#45C6B1]">
-            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-white dark:bg-black z-50">
-              <span className="-rotate-45 text-sm">1</span>
+          <div className="flex items-baseline gap-6 pb-8 relative before:absolute before:h-full before:w-[1px] before:left-[11px] before:top-0 before:bg-[#45C6B1]">
+            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-[#F7F9FB] dark:bg-gray-900 z-50">
+              <span className="-rotate-45">1</span>
             </div>
             <div className="flex-1">
               <p>
@@ -18,9 +18,9 @@ const QuizTimeLine = () => {
           </div>
         </li>
         <li className="">
-          <div className="flex items-baseline gap-6 pb-6 relative before:absolute before:h-full before:w-[1px] before:left-[11px] before:top-0 before:bg-[#45C6B1]">
-            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-white dark:bg-black z-50">
-              <span className="-rotate-45 text-sm">2</span>
+          <div className="flex items-baseline gap-6 pb-8 relative before:absolute before:h-full before:w-[1px] before:left-[11px] before:top-0 before:bg-[#45C6B1]">
+            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-[#F7F9FB] dark:bg-gray-900 z-50">
+              <span className="-rotate-45">2</span>
             </div>
             <div className="flex-1">
               <p>
@@ -31,9 +31,9 @@ const QuizTimeLine = () => {
           </div>
         </li>
         <li className="">
-          <div className="flex items-baseline gap-6 pb-6 relative before:absolute before:h-full before:w-[1px] before:left-[11px] before:top-0 before:bg-[#45C6B1]">
-            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-white dark:bg-black z-50">
-              <span className="-rotate-45 text-sm">3</span>
+          <div className="flex items-baseline gap-6 pb-8 relative before:absolute before:h-full before:w-[1px] before:left-[11px] before:top-0 before:bg-[#45C6B1]">
+            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-[#F7F9FB] dark:bg-gray-900 z-50">
+              <span className="-rotate-45">3</span>
             </div>
             <div className="flex-1">
               <p>
@@ -45,8 +45,8 @@ const QuizTimeLine = () => {
         </li>
         <li className="">
           <div className="flex items-baseline gap-6 pb-6">
-            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-white dark:bg-black z-50">
-              <span className="-rotate-45 text-sm">4</span>
+            <div className="w-6 h-6 border border-[#45C6B1] rotate-45 flex justify-center items-center bg-[#F7F9FB] dark:bg-gray-900 z-50">
+              <span className="-rotate-45">4</span>
             </div>
             <div className="flex-1">
               <p>

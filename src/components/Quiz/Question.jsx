@@ -25,9 +25,10 @@ const Question = ({
               setSelectedAnswer(e.target.innerText);
               setCorrectAnswer(questions[currentQuestionIndex]?.correctAnswer);
             }}
-            className={`bg-[#f5f7f9] dark:bg-gray-800 transition-all duration-300 hover:text-white hover:bg-[#20bca2] dark:hover:bg-[#20bca2] p-3 rounded-md text-left text-sm ${
-              selectedIndex === index &&
-              "text-white bg-[#20bca2] dark:bg-[#20bca2]"
+            className={`transition-all duration-300 p-3 rounded-md text-left text-sm ${
+              selectedIndex === index
+                ? "text-white bg-[#20bca1]"
+                : "bg-[#f5f7f9] dark:bg-gray-800"
             }`}
             key={index}
           >

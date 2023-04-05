@@ -60,11 +60,11 @@ const QuizStart = () => {
     }
   };
   return (
-    <div className="min-h-screen lg:w-1/2 mx-auto dark:text-white mt-24">
+    <div className="container md:container-md min-height lg:w-1/2 mx-auto dark:text-white pt-24">
       <div className="relative">
         <div className="absolute inset-1 bg-gradient-to-r from-pink-500 to-purple-500 blur"></div>
         <div className="relative bg-white dark:bg-gray-900 p-6 rounded-xl">
-          <p className="text-3xl text-right text-[#45C6B1]">
+          <p className="text-3xl text-right text-[#32b7a1]">
             {" "}
             {minutes < 10 ? "0" + minutes : minutes}:
             {seconds < 10 ? "0" + seconds : seconds}
@@ -88,12 +88,12 @@ const QuizStart = () => {
         <button
           disabled={selectedIndex === null}
           onClick={navigateToResultPage}
-          className={`px-6 py-1 bg-[#20bca2] text-white mt-6 rounded-sm ${
-            selectedIndex === null &&
-            "bg-[#F7F9FB] dark:bg-gray-900 text-slate-900 dark:text-white"
+          className={`px-6 py-1 mt-6 text-white bg-[#20bca1] rounded-sm ${
+            selectedIndex === null && "hidden"
           }`}
         >
-          <span>Next</span> <FiChevronRight className="inline-block text-lg" />
+          <span className="">Next</span>{" "}
+          <FiChevronRight className="inline-block text-lg" />
         </button>
       </div>
     </div>

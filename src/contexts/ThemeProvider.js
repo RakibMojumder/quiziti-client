@@ -10,11 +10,11 @@ const ThemeProvider = ({ children }) => {
         setTheme(JSON.parse(localStorage.getItem('theme')));
 
         if (!theme) {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-        } else {
             document.documentElement.classList.add('light');
             document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
         }
     }, [theme]);
 
@@ -32,8 +32,9 @@ const ThemeProvider = ({ children }) => {
 };
 
 export const useTheme = () => {
-    const { theme, toggleTheme, showMenu, setShowMenu } = useContext(THEME_CONTEXT);
-    return { theme, toggleTheme, showMenu, setShowMenu }
+    // const { theme, toggleTheme, showMenu, setShowMenu } = useContext(THEME_CONTEXT);
+    // return { theme, toggleTheme, showMenu, setShowMenu }
+    return useContext(THEME_CONTEXT)
 }
 
 export default ThemeProvider;
