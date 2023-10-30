@@ -13,7 +13,6 @@ const Banner = () => {
     <AnimatePage>
       <div className="bg-pattern bg-white dark:bg-black/20 dark:bg-dark-pattern lg:min-height border-b dark:border-slate-800">
         <div className="container md:container-md mx-auto relative">
-          {/* blur shadow */}
           <div className="md:h-[600px] lg:min-h-screen md:w-[65%] relative">
             <div className="hidden dark:block h-60 w-20 bg-blue-500 rotate-45 blur-[120px] absolute bottom-[500px] lg:bottom-52 left-20"></div>
             <div className="hidden dark:block h-60 md:h-80 w-32 md:w-48 bg-indigo-500 md:bg-sky-700 rotate-[-35deg] filter opacity-50 dark:blur-[90px] absolute -top-20 right-20"></div>
@@ -46,7 +45,7 @@ const Banner = () => {
                 <BsChevronRight className="transition-all duration-300 group-hover:translate-x-2.5" />
               </button>
             </div>
-            <div className={`block md:w-2/5 ${showMenu && "-z-10 md:z-0"}`}>
+            <div className={`block md:w-2/5 ${showMenu && "relative z-0"}`}>
               <Lottie
                 animationData={bannerLottie}
                 loop={true}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import profileImg from "../../assets/img/profile.jpg";
 import { AUTH_CONTEXT } from "../../contexts/AuthProvider";
@@ -7,28 +7,32 @@ import { AiFillEdit } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
 import { IoStatsChart } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { TbFileInvoice } from "react-icons/tb";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const Profile = ({ setShowProfile, handleLogOut }) => {
-  const { user } = useContext(AUTH_CONTEXT);
+  const ref = useRef();
   const navigate = useNavigate();
   const [file, setFile] = useState();
-
-  // const changeProfile = () => {};
+  const { user } = useContext(AUTH_CONTEXT);
+  useClickOutside(ref, () => setShowProfile(false));
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="py-2 backdrop-blur-0 rounded-b-lg bg-white shadow-xl border dark:border-slate-700 dark:bg-slate-800 text-slate-900 dark:text-slate-100 absolute w-60 right-[67px] top-[48px] z-50"
+      ref={ref}
+      initial={{
+        opacity: 0,
+        rotateX: "35deg",
+        transformOrigin: "top center",
+      }}
+      animate={{ opacity: 1, rotateX: 0, zIndex: 1000 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="hidden sm:block py-2 backdrop-blur-0 rounded-b-lg bg-white shadow-xl border dark:border-slate-700 dark:bg-slate-800 text-slate-900 dark:text-slate-100 absolute w-60 right-[67px] top-[48px] z-[1000]"
     >
       <div className="border-b border-[#45C6B1]">
         <div className="group h-20 w-20 mt-5 mx-auto rounded-full transition-all hover:border-2 hover:border-[#45C6B1] relative">
           <img src={profileImg} className="h-full w-full rounded-full" alt="" />
           <div className="h-7 w-7 absolute -top-1 -right-5">
-            <AiFillEdit className="invisible h-7 w-7 group-hover:visible transition-all text-[#45C6B1] absolute -top-1 -right-0" />
+            <AiFillEdit className="invisible h-7 w-7 group-hover:visible text-[#45C6B1] absolute -top-1 -right-0" />
             <input
               onChange={(e) => setFile(e.target.files)}
               type="file"

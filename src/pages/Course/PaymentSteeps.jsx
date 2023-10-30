@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState } from "react";
 import { GoCheck } from "react-icons/go";
 import AnimatePage from "../../components/Helper/AnimatePage";
@@ -18,7 +18,7 @@ const PaymentSteeps = () => {
   const steps = ["Order Info", "Customer Info", "Payment"];
   const [currentSteps, setCurrentSteps] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [phone, setPhone] = useState(0);
+  const [phone, setPhone] = useState("");
 
   const { id } = useParams();
   const { data: course, isLoading } = useQuery(["courses", id], async () => {

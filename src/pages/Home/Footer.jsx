@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="container md:container-md mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 space-y-8 md:gap-3 py-20 md:py-28">
             <div className="col-span-2 lg:col-span-3 lg:pr-0">
-              <img src={!theme ? logoOne : logoTwo} alt="" className="h-14" />
+              <img src={!theme ? logoTwo : logoOne} alt="" className="h-14" />
               <h1 className="font-semibold mt-6">
                 Unlock your potential with engaging our courses and quizzes.
               </h1>

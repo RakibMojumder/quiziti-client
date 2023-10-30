@@ -30,7 +30,7 @@ const App = () => {
   }, [])
 
   return (
-    <div className="bg-[#F7F9FB] dark:bg-gray-900 font-maven">
+    <div className="bg-[#F7F9FB] dark:bg-gray-900">
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
